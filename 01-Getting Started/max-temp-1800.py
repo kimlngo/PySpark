@@ -5,19 +5,19 @@ def parseLine(line):
     stationId = fields[0]
     type = fields[2]
     temp = float(fields[3]) * 0.1
-    return (stationId, type, temp)
+    return (stationId, type, temp) #(EZE00100082,TMAX,-10)
 
-def reduceMinTemp(t1, t2):
-    return min(t1, t2)
+def reduceMaxTemp(t1, t2):
+    return max(t1, t2)
 
 conf = SparkConf().setMaster("local").setAppName("MinTempIn1800")
 sc = SparkContext(conf = conf)
 
 allMinTemps = (sc.textFile("file:///github/PySpark/01-Getting Started/1800.csv")
              .map(parseLine)
-             .filter(lambda entry: "TMIN" in entry[1])
+             .filter(lambda entry: "TMAX" in entry[1]) #(EZE00100082,TMAX,-10)
              .map(lambda entry: (entry[0], entry[2]))
-             .reduceByKey(reduceMinTemp)
+             .reduceByKey(reduceMaxTemp)
              .collect())
 
 for k, v in allMinTemps:
