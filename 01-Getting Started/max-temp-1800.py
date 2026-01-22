@@ -1,4 +1,4 @@
-from pyspark import SparkContext, SparkConf
+from pyspark import SparkContext, SparkConf # type: ignore
 
 def parseLine(line):
     fields = line.split(",")

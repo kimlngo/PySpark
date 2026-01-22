@@ -1,4 +1,4 @@
-from pyspark import SparkConf, SparkContext
+from pyspark import SparkConf, SparkContext # type: ignore
 
 #input:  0,Will,33,385
 #output: k-v: (33, 385)

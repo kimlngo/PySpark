@@ -1,4 +1,4 @@
-from pyspark import SparkConf, SparkContext
+from pyspark import SparkConf, SparkContext # type: ignore
 import collections
 
 #execution command: spark-submit ratings-counter.py

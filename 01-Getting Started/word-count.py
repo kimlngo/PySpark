@@ -1,5 +1,5 @@
 import re
-from pyspark import SparkContext, SparkConf
+from pyspark import SparkContext, SparkConf # type: ignore
 
 def normalizeWord(text):
     return re.compile(r'\W+', re.UNICODE).split(text.lower())
